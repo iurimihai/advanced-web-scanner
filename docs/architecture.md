@@ -12,7 +12,7 @@ as firefighters, they should develop an Internal Development Platform (IDP) and 
 teams work on theirs projects. To achieve that, the developers need a single and robust API to interact with all infrastructure
 abstraction, becoming more efficient and reducing cognitive load.
 
-Due to its wide adoption extensive API, Kubernetes has a lot of advantages that could make it become the API layer to interact
+Due to its wide adoption and extensible API, Kubernetes has a lot of advantages that could make it become the API layer to interact
 with platform services.It also provide a platform-agnostic approach to deploy and run applications, enabling a fully automated
 cloud-native SDLC implementation.
 
