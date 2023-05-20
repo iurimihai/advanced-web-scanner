@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: juice-shop
-  name: juice-shop
+  name: juice-shop-deployment
 spec:
   replicas: 1
   selector:
@@ -26,7 +26,7 @@ kind: Service
 metadata:
   labels:
     app: juice-shop
-  name: test-service
+  name: juice-shop-service
 spec:
   ports:
   - port: 3000
