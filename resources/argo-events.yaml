@@ -24,7 +24,7 @@ spec:
     chart: argo-events
     helm:
       releaseName: argo-events
-      version: v2
+      version: "3"
 
   destination:
     server: https://kubernetes.default.svc
