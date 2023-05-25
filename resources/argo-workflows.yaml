@@ -24,7 +24,6 @@ spec:
     chart: argo-workflows
     helm:
       releaseName: argo-workflows
-      version: "3"
       valueFiles:
         - values.yaml
 
