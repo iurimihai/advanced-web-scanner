@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: events
+  name: events-deployment
+  namespace: events
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: events
+  strategy: {}
+  template:
+    metadata:
+  
+      labels:
+        app: events
+    spec:
+      containers:
+      - image: events:local
+        name: nginx
+        resources:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: events
+  name: events-service
+  namespace: events
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: events

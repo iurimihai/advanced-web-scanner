@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ci-cd-cluster
+  name: argo-events-app
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
   # Add this finalizer ONLY if you want these to cascade delete.
@@ -9,20 +9,26 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   # Add labels to your application object.
   labels:
-    name: ci-cd-cluster
+    name: argo-events-app
 spec:
   # The project the application belongs to.
   project: default
 
   # Source of the application manifests
-  source:
-    repoURL: https://github.com/iurimihai/advanced-web-scanner.git  # Can point to either a Helm chart repo or a git repo.
+  sources:
+  - repoURL: https://github.com/iurimihai/advanced-web-scanner.git  # Can point to either a Helm chart repo or a git repo.
     targetRevision: cluster-setup  # For Helm, this refers to the chart version.
-    path: manifests  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+    path: manifests/argo-events  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+  - repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: 2.3.3
+    helm:
+      chart: argo-events
+      releaseName: argo-events
+      version: v2
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: juice-shop
+    namespace: argo-events
 
     # # kustomize specific config
     # kustomize:
