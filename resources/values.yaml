@@ -1,2 +1,1 @@
 server.extraArgs: [--auth-mode=server]
-

@@ -21,8 +21,8 @@ spec:
     path: manifests/argo-events  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
   - repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 2.3.3
+    chart: argo-events
     helm:
-      chart: argo-events
       releaseName: argo-events
       version: v2
 

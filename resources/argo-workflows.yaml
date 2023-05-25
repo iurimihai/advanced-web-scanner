@@ -21,10 +21,12 @@ spec:
     path: manifests/argo-workflows  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
   - repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 0.28.0
+    chart: argo-workflows
     helm:
-      chart: argo-workflows
       releaseName: argo-workflows
       version: v2
+      valueFiles:
+        - values.yaml
 
   destination:
     server: https://kubernetes.default.svc
