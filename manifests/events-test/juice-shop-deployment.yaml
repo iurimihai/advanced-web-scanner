@@ -28,7 +28,7 @@ metadata:
   labels:
     app: events-shop
   name: events-shop-service
-  namespace: workflows
+  namespace: argo-events
 spec:
   ports:
   - port: 3000
