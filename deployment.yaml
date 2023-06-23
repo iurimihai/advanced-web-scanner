@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/iurimihai/advanced-web-scanner.git
     targetRevision: cluster-setup
-    path: manifests
+    path: resources
   destination:
     server: https://kubernetes.default.svc
     namespace: default

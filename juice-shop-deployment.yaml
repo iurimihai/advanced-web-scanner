@@ -18,7 +18,7 @@ spec:
         app: juice-shop
     spec:
       containers:
-      - image: juice-shop:local
+      - image: iurimihai/kaniko-test
         name: nginx
         resources:
 ---

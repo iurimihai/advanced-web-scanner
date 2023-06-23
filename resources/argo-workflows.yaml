@@ -18,7 +18,7 @@ spec:
   sources:
   - repoURL: https://github.com/iurimihai/advanced-web-scanner.git  # Can point to either a Helm chart repo or a git repo.
     targetRevision: cluster-setup  # For Helm, this refers to the chart version.
-    path: manifests/argo-workflows  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+    path: manifests/workflows-test  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
   - repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 0.28.0
     chart: argo-workflows
