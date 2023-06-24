@@ -4,7 +4,7 @@ metadata:
   labels:
     app: workflows-shop
   name: workflow-deployment
-  namespace: workflows
+  namespace: argo
 spec:
   replicas: 1
   selector:
@@ -28,7 +28,7 @@ metadata:
   labels:
     app: workflows-shop
   name: workflows-shop-service
-  namespace: workflows
+  namespace: argo
 spec:
   ports:
   - port: 3001

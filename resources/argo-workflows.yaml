@@ -9,7 +9,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   # Add labels to your application object.
   labels:
-    name: argo-workflows-app
+    name: argo-workflows
 spec:
   # The project the application belongs to.
   project: default
