@@ -1,0 +1,7 @@
+server:
+  extraArgs:
+  - --auth-mode=server
+  - --secure=false
+  extraEnv:
+  - name: BASE_HREF
+    value: /argo/
