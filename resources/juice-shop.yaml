@@ -18,6 +18,7 @@ spec:
   sources:
   - repoURL: https://github.com/iurimihai/juice-shop-deployment.git  # Can point to either a Helm chart repo or a git repo.
     targetRevision: main  # For Helm, this refers to the chart version.
+    path: /
 
   destination:
     server: https://kubernetes.default.svc
