@@ -5,7 +5,7 @@ resources:
 # - rbac.yaml
 # - workflows.yaml
 # - templates.yaml
-- namespace.yaml
+# - namespace.yaml
 - say-hello-template.yaml
 - say-hello-workflow.yaml
 
