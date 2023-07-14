@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ClusterWorkflowTemplate
+metadata:
+  name: hello-template
+spec:
+  templates:
+  - name: say-hello-template
+    inputs:
+      parameters:
+      - name: location
+    script:
+      image: busybox
+      command: [sh]
+      source: |
+        echo "Hello from {{inputs.parameters.location}}!"
