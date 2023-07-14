@@ -4,6 +4,7 @@ metadata:
   # generateName: hello-workflow-
   name: say-hello-wf
 spec:
+  entrypoint: say-hello-template
   arguments:
     parameters:
     - name: location
