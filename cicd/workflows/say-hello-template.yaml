@@ -3,6 +3,7 @@ kind: ClusterWorkflowTemplate
 metadata:
   name: hello-template
 spec:
+  entrypoint: say-hello-template
   templates:
   - name: say-hello-template
     inputs:
