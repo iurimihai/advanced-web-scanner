@@ -3,4 +3,5 @@ kind: Kustomization
 
 resources:
   # - rbac.yaml
-  - workflow-controller-cm.yaml
+  - base/workflow-controller-cm.yaml
+  - base/workflowtemplates/
