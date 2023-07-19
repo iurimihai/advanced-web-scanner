@@ -5,3 +5,4 @@ resources:
   # - rbac.yaml
   - base/workflow-controller-cm.yaml
   - base/workflowtemplates/
+  - base/install.yaml
