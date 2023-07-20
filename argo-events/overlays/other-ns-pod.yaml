@@ -4,7 +4,7 @@ metadata:
   name: other-pod
   labels:
     name: other-pod
-    namespace: other
+    # namespace: other
 spec:
   containers:
   - name: other-pod
