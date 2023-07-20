@@ -6,3 +6,4 @@ resources:
 - install-validating-webhook.yaml
 - native-eventbus.yaml
 - webhook-example.yaml
+- webhook-eventsource.yaml
