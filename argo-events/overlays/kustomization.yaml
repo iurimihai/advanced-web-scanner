@@ -5,3 +5,4 @@ namespace: other
 
 resources:
 - other-ns-pod.yaml
+- namespace.yaml
