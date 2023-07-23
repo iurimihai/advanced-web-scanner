@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   # - rbac.yaml
-  - namespace.yaml
   - workflowtemplates/say-hello-template.yaml
   - workflowtemplates/say-hello-workflow.yaml
   - install.yaml
