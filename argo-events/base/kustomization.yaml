@@ -7,5 +7,5 @@ resources:
 - install.yaml
 - install-validating-webhook.yaml
 - native-eventbus.yaml
-- webhook-example.yaml
+- webhook-sensors.yaml
 - webhook-eventsource.yaml
