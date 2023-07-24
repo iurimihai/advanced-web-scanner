@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: EventSource
 metadata:
-  name: ci-cd
+  name: webhook
 spec:
   service:
     ports:
@@ -13,7 +13,7 @@ spec:
       # port to run HTTP server on
       port: "12000"
       # endpoint to listen to
-      endpoint: /build
+      endpoint: /example
       # HTTP request method to allow. In this case, only POST requests are accepted
       method: POST
 
