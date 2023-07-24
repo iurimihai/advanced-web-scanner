@@ -1,0 +1,90 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ClusterWorkflowTemplate
+metadata:
+  name: ci-cd-template
+spec:
+  entrypoint: build
+  templates:
+  - name: build
+    inputs:
+      parameters:
+      - name: location
+    dag:
+      tasks:
+      - name: build
+        dependencies: [sast, lint, deprecations]
+        templateRef:
+          name: build-cwft
+          # template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: step
+            value: BUILD
+      - name: sast
+        templateRef:
+          name: build-cwft
+          # template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: step
+            value: SAST
+      - name: lint
+        templateRef:
+          name: build-cwft
+          # template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: step
+            value: LINT
+      - name: deprecations
+        templateRef:
+          name: build-cwft
+          # template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: step
+            value: DEPRECATIONS
+      - name: deploy-staging
+        dependencies: [build]
+        templateRef:
+          name: build-cwft
+          # template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: step
+            value: STAGING
+      - name: deploy-prod
+        dependencies: [testing, dast]
+        templateRef:
+          name: build-cwft
+          # template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: step
+            value: PROD
+      - name: dast
+        dependencies: [deploy-staging, testing]
+        templateRef:
+          name: build-cwft
+          # template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: step
+            value: DAST
+      - name: testing # unit, functional, integration
+        dependencies: [deploy-staging]
+        templateRef:
+          name: build-cwft
+          # template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: step
+            value: TESTING

@@ -2,22 +2,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ClusterWorkflowTemplate
 metadata:
-  name: build-image
+  name: build-cwft
 spec:
   # serviceAccountName: workflow
-  volumes:
-  - name: regcred
+  # volumes:
+  # - name: regcred
+  # templates:
+  # - name: build
+  #   initContainers:
+  #   - name: git-clone
+  #     image: 
+  #   container:
+  #     image: gcr.io/kaniko-project/executor:latest
+  #     # args: ["--dockerfile=/workspace/Dockerfile",
+  #     #         "--context=dir:///workspace",
+  #     #         "--destination=iurimihai/kaniko-test"]
 
+  #     volumeMounts:
+  #     - name: regcred
+  #       mountPath: /workspace
+
+  entrypoint: build
+  arguments:
+    parameters:
+    - name: step
   templates:
-  - name: kaniko-build
-    initContainers:
-    - name: git-clone
-      image: 
-    container:
-      image: gcr.io/kaniko-project/executor:latest
-      args: ["--dockerfile=/workspace/Dockerfile",
-              "--context=dir:///workspace",
-              "--destination=iurimihai/kaniko-test"]
-      volumeMounts:
-      - name: regcred
-        mountPath: /workspace
+  - name: build
+    script:
+      image: docker/whalesay:latest
+      command: [cowsay]
+      args: ["{{inputs.parameters.step}}"]
+      

@@ -3,8 +3,10 @@ kind: Kustomization
 
 resources:
   # - rbac.yaml
-  - workflowtemplates/say-hello-template.yaml
-  - workflowtemplates/say-hello-workflow.yaml
+  # - workflowtemplates/say-hello-template.yaml
+  # - workflowtemplates/say-hello-workflow.yaml
+  - workflowtemplates/build.yaml
+  - workflowtemplates/ci-cd-pipeline-template.yaml
   - install.yaml
 
 patches:
