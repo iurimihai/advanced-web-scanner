@@ -71,6 +71,19 @@ spec:
                 # namespace: argo
               spec:
                 entrypoint: build
-                workflowTemplateRef:
-                  name: ci-cd-template
-                  clusterScope: true
+                # workflowTemplateRef:
+                #   name: ci-cd-template
+                #   clusterScope: true
+                templates:
+                - name: build
+                  dag:
+                    tasks:
+                    - name: build
+                      templateRef:
+                        name: build-cwft
+                        template: build
+                        clusterScope: true
+                      arguments:
+                        parameters:
+                        - name: step
+                          value: build
