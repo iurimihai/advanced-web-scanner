@@ -8,9 +8,9 @@ spec:
   - name: say-hello-template
     inputs:
       parameters:
-      - name: location
+      - name: step
     script:
       image: busybox
       command: [sh]
       source: |
-        echo "Hello from {{inputs.parameters.location}}!"
+        echo "Hello from {{inputs.parameters.step}}!"
