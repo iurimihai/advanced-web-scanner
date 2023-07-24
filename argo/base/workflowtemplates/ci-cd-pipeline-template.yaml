@@ -83,7 +83,7 @@ spec:
         dependencies: [deploy-staging]
         templateRef:
           name: build-cwft
-          # template: build
+          template: build
           clusterScope: true
         arguments:
           parameters:
