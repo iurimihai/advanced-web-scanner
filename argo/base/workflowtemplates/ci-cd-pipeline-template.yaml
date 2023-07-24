@@ -3,7 +3,7 @@ kind: ClusterWorkflowTemplate
 metadata:
   name: ci-cd-template
 spec:
-  # entrypoint: build
+  entrypoint: build
   templates:
   - name: build
     inputs:
@@ -70,7 +70,7 @@ spec:
           - name: step
             value: PROD
       - name: dast
-        dependencies: [deploy-staging, testing]
+        dependencies: [testing]
         templateRef:
           name: build-cwft
           template: build
