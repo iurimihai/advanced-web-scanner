@@ -22,7 +22,7 @@ spec:
   #     - name: regcred
   #       mountPath: /workspace
 
-  entrypoint: build
+  # entrypoint: build
   arguments:
     parameters:
     - name: step
@@ -32,4 +32,3 @@ spec:
       image: docker/whalesay:latest
       command: [cowsay]
       args: ["{{inputs.parameters.step}}"]
-      
