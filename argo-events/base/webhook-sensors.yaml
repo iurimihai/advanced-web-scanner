@@ -79,11 +79,16 @@ spec:
                   dag:
                     tasks:
                     - name: build
-                      templateRef:
-                        name: build-cwft
-                        template: build
-                        clusterScope: true
+                      template: build-template
                       arguments:
                         parameters:
                         - name: step
-                          value: build
+                          value: BUILD
+                - name: build-template
+                  inputs:
+                    parameters:
+                    - name: step
+                  container:
+                    image: docker/whalesay:latest
+                    command: [cowsay]
+                    args: ["{{inputs.parameters.step}}"]
