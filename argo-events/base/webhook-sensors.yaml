@@ -66,8 +66,9 @@ spec:
               kind: Workflow
               metadata:
                 generateName: ci-cd-
-                namespace: argo
+                # namespace: argo
               spec:
+                entrypoint: build
                 workflowTemplateRef:
                   name: ci-cd-template
                   clusterScope: true

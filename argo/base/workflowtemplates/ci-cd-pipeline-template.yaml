@@ -3,12 +3,13 @@ kind: ClusterWorkflowTemplate
 metadata:
   name: ci-cd-template
 spec:
-  entrypoint: build
+  # entrypoint: build
   templates:
   - name: build
     inputs:
       parameters:
       - name: location
+        value: Bucharest
     dag:
       tasks:
       - name: build
