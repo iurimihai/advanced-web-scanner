@@ -72,24 +72,24 @@ spec:
                 namespace: argo
               spec:
                 entrypoint: build
-                # workflowTemplateRef:
-                #   name: ci-cd-template
-                #   clusterScope: true
-                templates:
-                - name: build
-                  dag:
-                    tasks:
-                    - name: build
-                      template: build-template
-                      arguments:
-                        parameters:
-                        - name: step
-                          value: BUILD
-                - name: build-template
-                  inputs:
-                    parameters:
-                    - name: step
-                  container:
-                    image: docker/whalesay:latest
-                    command: [cowsay]
-                    args: ["{{inputs.parameters.step}}"]
+                workflowTemplateRef:
+                  name: ci-cd-template
+                  clusterScope: true
+                # templates:
+                # - name: build
+                #   dag:
+                #     tasks:
+                #     - name: build
+                #       template: build-template
+                #       arguments:
+                #         parameters:
+                #         - name: step
+                #           value: BUILD
+                # - name: build-template
+                #   inputs:
+                #     parameters:
+                #     - name: step
+                #   container:
+                #     image: docker/whalesay:latest
+                #     command: [cowsay]
+                #     args: ["{{inputs.parameters.step}}"]
