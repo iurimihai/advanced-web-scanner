@@ -58,10 +58,11 @@ spec:
   triggers:
     - template:
         name: ci-cd-workflow-trigger
-        argoWorkflow:
-          group: argoproj.io
-          version: v1alpha1
-          operation: submit
+        k8s:
+          # group: argoproj.io
+          # version: v1alpha1
+          # operation: submit
+          operation: create
           source:
             resource:
               apiVersion: argoproj.io/v1alpha1
