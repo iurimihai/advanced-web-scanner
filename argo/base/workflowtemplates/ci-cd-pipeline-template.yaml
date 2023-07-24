@@ -13,7 +13,7 @@ spec:
     dag:
       tasks:
       - name: build
-        # dependencies: [sast, lint, deprecations]
+        dependencies: [sast, lint, deprecations]
         templateRef:
           name: build-cwft
           template: build
@@ -25,7 +25,7 @@ spec:
       - name: sast
         templateRef:
           name: build-cwft
-          # template: build
+          template: build
           clusterScope: true
         arguments:
           parameters:
@@ -34,7 +34,7 @@ spec:
       - name: lint
         templateRef:
           name: build-cwft
-          # template: build
+          template: build
           clusterScope: true
         arguments:
           parameters:
@@ -43,7 +43,7 @@ spec:
       - name: deprecations
         templateRef:
           name: build-cwft
-          # template: build
+          template: build
           clusterScope: true
         arguments:
           parameters:
@@ -53,7 +53,7 @@ spec:
         dependencies: [build]
         templateRef:
           name: build-cwft
-          # template: build
+          template: build
           clusterScope: true
         arguments:
           parameters:
@@ -63,7 +63,7 @@ spec:
         dependencies: [testing, dast]
         templateRef:
           name: build-cwft
-          # template: build
+          template: build
           clusterScope: true
         arguments:
           parameters:
@@ -73,7 +73,7 @@ spec:
         dependencies: [deploy-staging, testing]
         templateRef:
           name: build-cwft
-          # template: build
+          template: build
           clusterScope: true
         arguments:
           parameters:
