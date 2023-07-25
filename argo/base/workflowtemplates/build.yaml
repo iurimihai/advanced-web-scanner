@@ -32,4 +32,4 @@ spec:
     script:
       image: docker/whalesay:latest
       command: [cowsay]
-      args: ["{{arguments.parameters.phase}}"]
+      args: ["{{workflow.parameters.phase}}"]
