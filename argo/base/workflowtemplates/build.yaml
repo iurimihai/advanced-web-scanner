@@ -26,6 +26,7 @@ spec:
   arguments:
     parameters:
     - name: phase
+      value: default
   templates:
   - name: build
     script:
