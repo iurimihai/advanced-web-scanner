@@ -23,13 +23,13 @@ spec:
   #       mountPath: /workspace
 
   entrypoint: build
-  arguments:
-    parameters:
-    - name: phase
-      value: default
   templates:
   - name: build
+    inputs:
+      parameters:
+      - name: phase
+        value: default_phase
     script:
       image: docker/whalesay:latest
       command: [cowsay]
-      args: ["{{workflow.parameters.phase}}"]
+      args: ["{{inputs.parameters.phase}}"]

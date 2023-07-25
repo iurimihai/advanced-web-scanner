@@ -6,10 +6,10 @@ spec:
   entrypoint: build
   templates:
   - name: build
-    inputs:
-      parameters:
-      - name: location
-        value: Bucharest
+    # inputs:
+    #   parameters:
+    #   - name: location
+    #     value: Bucharest
     dag:
       tasks:
       - name: build
