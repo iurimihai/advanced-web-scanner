@@ -60,7 +60,7 @@ spec:
           - name: step
             value: STAGING
       - name: deploy-prod
-        dependencies: [testing, dast]
+        dependencies: [dast]
         templateRef:
           name: build-cwft
           template: build
