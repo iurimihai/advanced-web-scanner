@@ -20,7 +20,7 @@ spec:
           clusterScope: true
         arguments:
           parameters:
-          - name: step
+          - name: phase
             value: BUILD
       - name: sast
         templateRef:
@@ -29,7 +29,7 @@ spec:
           clusterScope: true
         arguments:
           parameters:
-          - name: step
+          - name: phase
             value: SAST
       - name: lint
         templateRef:
@@ -38,7 +38,7 @@ spec:
           clusterScope: true
         arguments:
           parameters:
-          - name: step
+          - name: phase
             value: LINT
       - name: deprecations
         templateRef:
@@ -47,7 +47,7 @@ spec:
           clusterScope: true
         arguments:
           parameters:
-          - name: step
+          - name: phase
             value: DEPRECATIONS
       - name: deploy-staging
         dependencies: [build]
@@ -57,7 +57,7 @@ spec:
           clusterScope: true
         arguments:
           parameters:
-          - name: step
+          - name: phase
             value: STAGING
       - name: deploy-prod
         dependencies: [dast]
@@ -67,7 +67,7 @@ spec:
           clusterScope: true
         arguments:
           parameters:
-          - name: step
+          - name: phase
             value: PROD
       - name: dast
         dependencies: [testing]
@@ -77,7 +77,7 @@ spec:
           clusterScope: true
         arguments:
           parameters:
-          - name: step
+          - name: phase
             value: DAST
       - name: testing # unit, functional, integration
         dependencies: [deploy-staging]
@@ -87,5 +87,5 @@ spec:
           clusterScope: true
         arguments:
           parameters:
-          - name: step
+          - name: phase
             value: TESTING

@@ -25,10 +25,10 @@ spec:
   entrypoint: build
   arguments:
     parameters:
-    - name: step
+    - name: phase
   templates:
   - name: build
     script:
       image: docker/whalesay:latest
       command: [cowsay]
-      args: ["{{inputs.parameters.step}}"]
+      args: ["{{inputs.parameters.phase}}"]
