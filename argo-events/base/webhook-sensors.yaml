@@ -54,7 +54,7 @@ spec:
   dependencies:
     - name: test-dep
       eventSourceName: webhook
-      eventName: example
+      eventName: build
   triggers:
     - template:
         name: ci-cd-workflow-trigger
