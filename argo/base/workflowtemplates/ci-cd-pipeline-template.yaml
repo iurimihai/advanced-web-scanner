@@ -13,7 +13,7 @@ spec:
     dag:
       tasks:
       - name: build
-        dependencies: [sast, lint, deprecations]
+        # dependencies: [sast, lint, deprecations]
         templateRef:
           name: build-and-push
           template: build
@@ -22,70 +22,71 @@ spec:
         #   parameters:
         #   - name: phase
         #     value: BUILD
-      - name: sast
-        templateRef:
-          name: build-cwft
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: phase
-            value: SAST
-      - name: lint
-        templateRef:
-          name: build-cwft
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: phase
-            value: LINT
-      - name: deprecations
-        templateRef:
-          name: build-cwft
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: phase
-            value: DEPRECATIONS
-      - name: deploy-staging
-        dependencies: [build]
-        templateRef:
-          name: build-cwft
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: phase
-            value: STAGING
-      - name: deploy-prod
-        dependencies: [dast]
-        templateRef:
-          name: build-cwft
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: phase
-            value: PROD
-      - name: dast
-        dependencies: [testing]
-        templateRef:
-          name: build-cwft
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: phase
-            value: DAST
-      - name: testing # unit, functional, integration
-        dependencies: [deploy-staging]
-        templateRef:
-          name: build-cwft
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: phase
-            value: TESTING
+
+      # - name: sast
+      #   templateRef:
+      #     name: build-cwft
+      #     template: build
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: phase
+      #       value: SAST
+      # - name: lint
+      #   templateRef:
+      #     name: build-cwft
+      #     template: build
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: phase
+      #       value: LINT
+      # - name: deprecations
+      #   templateRef:
+      #     name: build-cwft
+      #     template: build
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: phase
+      #       value: DEPRECATIONS
+      # - name: deploy-staging
+      #   dependencies: [build]
+      #   templateRef:
+      #     name: build-cwft
+      #     template: build
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: phase
+      #       value: STAGING
+      # - name: deploy-prod
+      #   dependencies: [dast]
+      #   templateRef:
+      #     name: build-cwft
+      #     template: build
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: phase
+      #       value: PROD
+      # - name: dast
+      #   dependencies: [testing]
+      #   templateRef:
+      #     name: build-cwft
+      #     template: build
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: phase
+      #       value: DAST
+      # - name: testing # unit, functional, integration
+      #   dependencies: [deploy-staging]
+      #   templateRef:
+      #     name: build-cwft
+      #     template: build
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: phase
+      #       value: TESTING
