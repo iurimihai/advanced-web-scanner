@@ -15,7 +15,7 @@ spec:
       - name: repo_commit_id
         value: HEAD
       - name: container_image
-        value: kaniko-argo-events-image
+        value: iurimihai/kaniko-argo-events-image
       - name: container_tag
         value: first
     container:
