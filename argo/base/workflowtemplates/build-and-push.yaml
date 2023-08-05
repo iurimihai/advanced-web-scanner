@@ -9,7 +9,7 @@ spec:
     inputs:
       parameters:
       - name: repo_url
-        value: git://github.com/iurimihai/juice-shop
+        value: git://github.com/iurimihai/juice-shop.git
       - name: repo_ref
         value: refs/heads/main
       - name: repo_commit_id
