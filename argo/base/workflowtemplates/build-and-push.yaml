@@ -23,6 +23,8 @@ spec:
       args:
       - --context={{inputs.parameters.repo_url}} #{{inputs.parameters.repo_ref}}#{{inputs.parameters.repo_commit_id}}
       - --destination={{inputs.parameters.container_image}}:{{inputs.parameters.container_tag}}
+      - --cache-run-layers
+      - --cache-copy-layers
       - --cache=true
       volumeMounts:
         - name: regcred
