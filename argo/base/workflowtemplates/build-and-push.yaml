@@ -15,9 +15,9 @@ spec:
       - name: repo_commit_id
         value: HEAD
       - name: container_image
-        value: iurimihai/kaniko-argo-events-image
+        value: iurimihai/kaniko-test
       - name: container_tag
-        value: first
+        value: 1.0.0
     container:
       image: gcr.io/kaniko-project/executor:debug
       args:
