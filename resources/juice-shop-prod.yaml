@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: juice-shop
+  name: juice-shop-prod
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
   # Add this finalizer ONLY if you want these to cascade delete.
@@ -13,7 +13,7 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
     argocd-image-updater.argoproj.io/write-back-target: kustomization
-    argocd-image-updater.argoproj.io/image-list: iurimihai/kaniko-test
+    argocd-image-updater.argoproj.io/image-list: iurimihai/juice-shop
 spec:
   # The project the application belongs to.
   project: default
@@ -26,7 +26,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: juice-shop
+    namespace: juice-shop-prod
 
     # # kustomize specific config
     # kustomize:
