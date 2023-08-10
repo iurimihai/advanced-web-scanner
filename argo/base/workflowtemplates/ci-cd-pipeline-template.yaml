@@ -10,7 +10,9 @@ spec:
       image: alpine:latest
       command: [sh]
       source: |
-        sleep 180
+        echo 'Sleeping...'
+        sleep 5
+        echo 'Woke up'
   - name: build
     dag:
       tasks:
