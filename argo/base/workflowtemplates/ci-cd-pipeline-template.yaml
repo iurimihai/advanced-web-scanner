@@ -32,16 +32,16 @@ spec:
           image: alpine/latest
           command: [sh, '-c']
           source: |
-            sleep 60
-      - name: wait-for-cluster-sync
-        dependencies: [deploy-staging]
-        script:
-          image: alpine/latest
-          command: [sh, '-c']
-          source: |
-            sleep 120
+            sleep 180
+      # - name: wait-for-cluster-sync
+      #   dependencies: [deploy-staging]
+      #   script:
+      #     image: alpine/latest
+      #     command: [sh, '-c']
+      #     source: |
+      #       sleep 120
       - name: deploy-prod
-        dependencies: [wait-for-cluster-sync]
+        dependencies: [deploy-staging]
         templateRef:
           name: promote
           template: promote
