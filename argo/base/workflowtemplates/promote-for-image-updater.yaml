@@ -17,7 +17,7 @@ spec:
       command: [sh]
       source: |
         echo "FROM {{inputs.parameters.test_container_image}}:{{inputs.parameters.test_container_tag}}" | \
-          kaniko/executor --dockerfile /dev/stdin --destination {{inputs.parameters.prod_container_image}}:{{inputs.parameters.prod_container_tag}}
+          /kaniko/executor --dockerfile /dev/stdin --destination {{inputs.parameters.prod_container_image}}:{{inputs.parameters.prod_container_tag}}
       volumeMounts:
         - name: regcred
           mountPath: /kaniko/.docker

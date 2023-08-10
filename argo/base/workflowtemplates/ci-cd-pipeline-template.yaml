@@ -10,7 +10,7 @@ spec:
       image: alpine:latest
       command: [sh]
       source: |
-        echo 'Sleeping...'
+        echo 'Waiting staging cluster to sync...'
         sleep 5
         echo 'Woke up'
   - name: build
