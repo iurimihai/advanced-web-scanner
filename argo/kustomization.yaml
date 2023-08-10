@@ -6,4 +6,4 @@ namespace: argo
 resources:
   # - rbac.yaml
   - base
-  - overlays
+  # - overlays
