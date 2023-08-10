@@ -18,10 +18,18 @@ spec:
           name: build-and-push
           template: build
           clusterScope: true
-        # arguments:
-        #   parameters:
-        #   - name: phase
-        #     value: BUILD
+        arguments:
+          parameters:
+          - name: repo_url
+            value: git://github.com/iurimihai/juice-shop.git
+          - name: repo_ref
+            value: refs/heads/main
+          - name: repo_commit_id
+            value: HEAD
+          - name: container_image
+            value: iurimihai/juice-shop-test
+          - name: container_tag
+            value: 1.0.0
 
       # - name: sast
       #   templateRef:
@@ -50,26 +58,26 @@ spec:
       #     parameters:
       #     - name: phase
       #       value: DEPRECATIONS
-      # - name: deploy-staging
-      #   dependencies: [build]
-      #   templateRef:
-      #     name: build-cwft
-      #     template: build
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: phase
-      #       value: STAGING
-      # - name: deploy-prod
-      #   dependencies: [dast]
-      #   templateRef:
-      #     name: build-cwft
-      #     template: build
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: phase
-      #       value: PROD
+      - name: deploy-staging
+        dependencies: [build]
+        templateRef:
+          name: 
+          template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: phase
+            value: STAGING
+      - name: deploy-prod
+        dependencies: [dast]
+        templateRef:
+          name: build-cwft
+          template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: phase
+            value: PROD
       # - name: dast
       #   dependencies: [testing]
       #   templateRef:
