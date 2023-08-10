@@ -13,7 +13,7 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
     argocd-image-updater.argoproj.io/write-back-target: kustomization
-    argocd-image-updater.argoproj.io/image-list: iurimihai/juice-shop
+    argocd-image-updater.argoproj.io/image-list: iurimihai/juice-shop-prod
 spec:
   # The project the application belongs to.
   project: default
@@ -22,7 +22,7 @@ spec:
   source:
     repoURL: https://github.com/iurimihai/juice-shop-deployment.git  # Can point to either a Helm chart repo or a git repo.
     targetRevision: main  # For Helm, this refers to the chart version.
-    path: .
+    path: prod
 
   destination:
     server: https://kubernetes.default.svc
