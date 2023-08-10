@@ -26,33 +26,33 @@ spec:
             value: iurimihai/juice-shop-test
           - name: container_tag
             value: 1.0.0
-      - name: deploy-staging
-        dependencies: [build]
-        script:
-          image: alpine:latest
-          command: [sh]
-          source: |
-            sleep 180
-      # - name: wait-for-cluster-sync
-      #   dependencies: [deploy-staging]
+      # - name: deploy-staging
+      #   dependencies: [build]
       #   script:
-      #     image: alpine/latest
-      #     command: [sh, '-c']
+      #     image: alpine:latest
+      #     command: [sh]
       #     source: |
-      #       sleep 120
-      - name: deploy-prod
-        dependencies: [deploy-staging]
-        templateRef:
-          name: promote
-          template: promote
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: test_container_image
-            value: iurimihai/juice-shop-test
-          - name: test_container_tag
-            value: 1.0.0
-          - name: prod_container_image
-            value: iurimihai/juice-shop-prod
-          - name: prod_container_tag
-            value: 1.0.0
+      #       sleep 180
+      # # - name: wait-for-cluster-sync
+      # #   dependencies: [deploy-staging]
+      # #   script:
+      # #     image: alpine/latest
+      # #     command: [sh, '-c']
+      # #     source: |
+      # #       sleep 120
+      # - name: deploy-prod
+      #   dependencies: [deploy-staging]
+      #   templateRef:
+      #     name: promote
+      #     template: promote
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: test_container_image
+      #       value: iurimihai/juice-shop-test
+      #     - name: test_container_tag
+      #       value: 1.0.0
+      #     - name: prod_container_image
+      #       value: iurimihai/juice-shop-prod
+      #     - name: prod_container_tag
+      #       value: 1.0.0
