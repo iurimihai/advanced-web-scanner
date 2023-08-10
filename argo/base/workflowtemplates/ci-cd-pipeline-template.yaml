@@ -6,10 +6,6 @@ spec:
   entrypoint: build
   templates:
   - name: build
-    # inputs:
-    #   parameters:
-    #   - name: location
-    #     value: Bucharest
     dag:
       tasks:
       - name: build
@@ -30,71 +26,33 @@ spec:
             value: iurimihai/juice-shop-test
           - name: container_tag
             value: 1.0.0
-
-      # - name: sast
-      #   templateRef:
-      #     name: build-cwft
-      #     template: build
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: phase
-      #       value: SAST
-      # - name: lint
-      #   templateRef:
-      #     name: build-cwft
-      #     template: build
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: phase
-      #       value: LINT
-      # - name: deprecations
-      #   templateRef:
-      #     name: build-cwft
-      #     template: build
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: phase
-      #       value: DEPRECATIONS
       - name: deploy-staging
         dependencies: [build]
-        templateRef:
-          name: 
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: phase
-            value: STAGING
+        script:
+          image: alpine/latest
+          command: [sh, '-c']
+          source: |
+            sleep 60
+      - name: wait-for-cluster-sync
+        dependencies: [deploy-staging]
+        script:
+          image: alpine/latest
+          command: [sh, '-c']
+          source: |
+            sleep 120
       - name: deploy-prod
-        dependencies: [dast]
+        dependencies: [wait-for-cluster-sync]
         templateRef:
-          name: build-cwft
-          template: build
+          name: promote
+          template: promote
           clusterScope: true
         arguments:
           parameters:
-          - name: phase
-            value: PROD
-      # - name: dast
-      #   dependencies: [testing]
-      #   templateRef:
-      #     name: build-cwft
-      #     template: build
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: phase
-      #       value: DAST
-      # - name: testing # unit, functional, integration
-      #   dependencies: [deploy-staging]
-      #   templateRef:
-      #     name: build-cwft
-      #     template: build
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: phase
-      #       value: TESTING
+          - name: test_container_image
+            value: iurimihai/juice-shop-test
+          - name: test_container_tag
+            value: 1.0.0
+          - name: prod_container_image
+            value: iurimihai/juice-shop-prod
+          - name: prod_container_tag
+            value: 1.0.0

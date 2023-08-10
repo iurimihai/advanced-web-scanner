@@ -9,13 +9,9 @@ spec:
     inputs:
       parameters:
       - name: test_container_image
-        value: iurimihai/juice-shop-test
       - name: test_container_tag
-        value: 1.0.0
       - name: prod_container_image
-        value: iurimihai/juice-shop-prod
       - name: prod_container_tag
-        value: 1.0.0
     script:
       image: gcr.io/kaniko-project/executor:debug
       command: [sh]
