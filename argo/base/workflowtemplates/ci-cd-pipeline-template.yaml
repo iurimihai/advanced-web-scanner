@@ -8,32 +8,32 @@ spec:
   - name: sleep
     script:
       image: alpine:latest
-      command: [sh, '-c']
+      command: [sh]
       source: |
         sleep 180
   - name: build
     dag:
       tasks:
-      - name: build
-        # dependencies: [sast, lint, deprecations]
-        templateRef:
-          name: build-and-push
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: repo_url
-            value: git://github.com/iurimihai/juice-shop.git
-          - name: repo_ref
-            value: refs/heads/main
-          - name: repo_commit_id
-            value: HEAD
-          - name: container_image
-            value: iurimihai/juice-shop-test
-          - name: container_tag
-            value: 1.0.0
+      # - name: build
+      #   # dependencies: [sast, lint, deprecations]
+      #   templateRef:
+      #     name: build-and-push
+      #     template: build
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: repo_url
+      #       value: git://github.com/iurimihai/juice-shop.git
+      #     - name: repo_ref
+      #       value: refs/heads/main
+      #     - name: repo_commit_id
+      #       value: HEAD
+      #     - name: container_image
+      #       value: iurimihai/juice-shop-test
+      #     - name: container_tag
+      #       value: 1.0.0
       - name: deploy-staging
-        dependencies: [build]
+        # dependencies: [build]
         template: sleep
       # - name: wait-for-cluster-sync
       #   dependencies: [deploy-staging]
