@@ -30,7 +30,7 @@ spec:
         dependencies: [build]
         script:
           image: alpine:latest
-          command: [sh, '-c']
+          command: [sh]
           source: |
             sleep 180
       # - name: wait-for-cluster-sync
