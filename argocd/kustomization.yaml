@@ -8,4 +8,5 @@ resources:
 - image-updater-install.yaml
 
 patches:
-  - path: patches/argocd-cm.yaml
+- path: patches/argocd-cm.yaml
+- path: patches/argocd-image-updater.yaml
