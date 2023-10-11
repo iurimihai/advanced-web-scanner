@@ -1,9 +1,16 @@
 variable "region" {
-  type = string
+  type    = string
+  default = "europe-central2"
+}
+
+variable "zone" {
+  type    = string
+  default = "europe-central2-a"
 }
 
 variable "project" {
-  type = string
+  type    = string
+  default = "strange-oxide-393506"
 }
 
 variable "network" {

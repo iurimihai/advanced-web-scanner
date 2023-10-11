@@ -13,6 +13,17 @@ spec:
         echo 'Waiting for cluster to sync...'
         sleep 5
         echo 'Done'
+  - name: zap-scan
+    volumes:
+    - name: zap-reports
+      emptyDir: {}
+    container:
+      image: softwaresecurityproject/zap-stable
+      command: [zap-baseline.py]
+      args: [-t, 'juice-shop-service.juice-shop-test.svc.cluster.local:3000', -g, 'gen.conf', -r, 'testreport.html'] # <CHANGE_ME>
+      volumeMounts:
+      - name: zap-reports
+        mountPath: /zap/wrk/
   - name: build
     dag:
       tasks:
@@ -37,6 +48,9 @@ spec:
       - name: deploy-staging
         dependencies: [build]
         template: sleep
+      - name: zap-baseline-scan
+        dependencies: [deploy-staging]
+        template: zap-scan
       - name: deploy-prod
         dependencies: [deploy-staging]
         templateRef:
