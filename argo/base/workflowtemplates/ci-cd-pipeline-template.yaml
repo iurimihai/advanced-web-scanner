@@ -52,7 +52,7 @@ spec:
         dependencies: [deploy-staging]
         template: zap-scan
       - name: deploy-prod
-        dependencies: [deploy-staging]
+        dependencies: [zap-baseline-scan]
         templateRef:
           name: promote
           template: promote
