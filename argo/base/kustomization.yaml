@@ -5,7 +5,7 @@ resources:
   # - rbac.yaml
   # - workflowtemplates/say-hello-template.yaml
   # - workflowtemplates/say-hello-workflow.yaml
-  - workflowtemplates/build.yaml
+  # - workflowtemplates/build.yaml
   - workflowtemplates/ci-cd-pipeline-template.yaml
   - workflowtemplates/build-and-push.yaml
   - workflowtemplates/promote-for-image-updater.yaml

@@ -62,8 +62,8 @@ spec:
           - name: test_container_image
             value: iurimihai/juice-shop-test
           - name: test_container_tag
-            value: 1.1.0
+            value: 1.1.1
           - name: prod_container_image
             value: iurimihai/juice-shop-prod
           - name: prod_container_tag
-            value: 1.0.1
+            value: 1.1.0
