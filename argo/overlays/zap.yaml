@@ -1,0 +1,11 @@
+---
+job:
+  active: yes
+  root: no
+  parameters:
+  - name: PARAM1
+    value: VAL1
+  - name: PARAM2
+    value: VAL2
+location: Bucharest
+# DUMMY
