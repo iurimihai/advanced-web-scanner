@@ -22,10 +22,10 @@ spec:
         name: zap-config
     container:
       image: softwaresecurityproject/zap-stable
-      # command: [zap-baseline.py]
-      # args: [-t, 'http://juice-shop-service.juice-shop-test.svc.cluster.local:3000', -g, 'gen.conf', -r, 'testreport.html', -I] # <CHANGE_ME>
-      args: [-addon-install <addon_name>]
-      command: [ls]
+      command: [zap-baseline.py]
+      args: [-t, 'http://juice-shop-service.juice-shop-test.svc.cluster.local:3000', -g, 'gen.conf', -r, 'testreport.html', -I] # <CHANGE_ME>
+      # args: [-addon-install <addon_name>]
+      # command: [ls]
       volumeMounts:
       - name: zap-reports
         mountPath: /zap/wrk/
@@ -34,26 +34,26 @@ spec:
   - name: build
     dag:
       tasks:
-      # - name: build
-      #   # dependencies: [sast, lint, deprecations]
-      #   templateRef:
-      #     name: build-and-push
-      #     template: build
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: repo_url
-      #       value: git://github.com/iurimihai/juice-shop.git
-      #     - name: repo_ref
-      #       value: refs/heads/main
-      #     - name: repo_commit_id
-      #       value: HEAD
-      #     - name: container_image
-      #       value: iurimihai/juice-shop-test
-      #     - name: container_tag
-      #       value: 1.1.0
+      - name: build
+        # dependencies: [sast, lint, deprecations]
+        templateRef:
+          name: build-and-push
+          template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: repo_url
+            value: git://github.com/iurimihai/juice-shop.git
+          - name: repo_ref
+            value: refs/heads/main
+          - name: repo_commit_id
+            value: HEAD
+          - name: container_image
+            value: iurimihai/juice-shop-test
+          - name: container_tag
+            value: 1.1.2
       - name: deploy-staging
-        # dependencies: [build]
+        dependencies: [build]
         template: sleep
       - name: zap-baseline-scan
         dependencies: [deploy-staging]
@@ -69,8 +69,8 @@ spec:
           - name: test_container_image
             value: iurimihai/juice-shop-test
           - name: test_container_tag
-            value: 1.1.1
+            value: 1.1.2
           - name: prod_container_image
             value: iurimihai/juice-shop-prod
           - name: prod_container_tag
-            value: 1.1.0
+            value: 1.1.1
