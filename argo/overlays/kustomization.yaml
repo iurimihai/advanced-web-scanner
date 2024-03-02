@@ -9,6 +9,6 @@ namespace: argo
 configMapGenerator:
 - name: zap-config
   files:
-  - ./zap.yaml
+  - ../../security/zap/zap.yaml
   options:
     disableNameSuffixHash: true
