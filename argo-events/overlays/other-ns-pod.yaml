@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: other-pod
+  labels:
+    name: other-pod
+    # namespace: other
+spec:
+  containers:
+  - name: other-pod
+    image: nginx:alpine
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80

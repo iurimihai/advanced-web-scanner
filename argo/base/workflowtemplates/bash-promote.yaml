@@ -1,0 +1,52 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ClusterWorkflowTemplate
+metadata:
+  name: promote
+spec:
+  templates:
+  - name: promote
+    inputs:
+      parameters:
+      - name: environment
+        value: staging
+      - name: repo_owner
+        value: iurimihai
+      - name: repo_name
+        value: juice-shop-deployment
+      - name: repo_ref
+        value: refs/heads/main
+      - name: repo_commit_id
+        value: HEAD
+      - name: container_image
+        value: iurimihai/juice-shop
+      - name: container_tag
+        value: 1.0.0
+    script:
+      image: gcr.io/kaniko-project/executor:debug
+      command: [sh]
+      source: |
+        set -e
+        git clone https://$(cat /.github/username):$(cat /.github/password)@github.com/{{inputs.parameters.repo_owner}}/{{inputs.parameters.repo_name}}.git
+        cd {{inputs.parameters.repo_name}}
+        git config user.name argo-bot
+        git config user.email argo-bot@noreply.com
+        cat {{inputs.parameters.environment}}
+      volumeMounts:
+        - name: regcred
+          mountPath: /kaniko/.docker
+          readOnly: true
+        - name: git-creds
+          mountPath: /.github/
+          readOnly: true
+    volumes:
+    - name: regcred
+      secret:
+        secretName: regcred
+        items:
+        - key: .dockerconfigjson
+          path: config.json
+    - name: git-creds
+      secret:
+        secretName: git-creds
+
