@@ -17,7 +17,7 @@ spec:
   # Source of the application manifests
   source:
     repoURL: https://github.com/iurimihai/advanced-web-scanner.git  # Can point to either a Helm chart repo or a git repo.
-    targetRevision: cluster-setup  # For Helm, this refers to the chart version.
+    targetRevision: HEAD 
     path: resources  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
 
   destination:
