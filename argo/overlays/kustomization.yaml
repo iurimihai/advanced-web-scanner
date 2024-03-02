@@ -1,14 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:
-- ../base
-
 namespace: argo
 
-configMapGenerator:
-- name: zap-config
-  files:
-  - ../../security/zap/zap.yaml
-  options:
-    disableNameSuffixHash: true
+resources:
+- ../base
+- ../../security/zap
