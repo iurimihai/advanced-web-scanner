@@ -1,0 +1,14 @@
+---
+env:
+  contexts:
+    - name: juice-shop-context
+      urls:
+      - 'http://juice-shop-service.juice-shop-test.svc.cluster.local:3000'
+  parameters:
+    failOnError: true
+    failOnWarning: false
+    progressToStdout: true
+jobs:
+- type: activeScan
+  parameters:
+    context: juice-shop-context
