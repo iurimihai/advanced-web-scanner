@@ -13,3 +13,4 @@ resources:
 patches:
 - path: patches/argocd-cm.yaml
 - path: patches/argocd-image-updater.yaml
+- path: patches/argocd-service.yaml
