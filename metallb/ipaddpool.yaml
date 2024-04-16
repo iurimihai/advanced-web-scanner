@@ -1,0 +1,126 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: default
+  namespace: metallb-system
+spec:
+  addresses:
+  - 10.0.1.30-10.0.1.40
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: default
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - default
+
+# apiVersion: metallb.io/v1beta1
+# kind: IPAddressPool
+# metadata:
+#   name: argocd
+#   namespace: metallb-system
+# spec:
+#   addresses:
+#   - 10.0.1.30/32
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: L2Advertisement
+# metadata:
+#   name: argocd
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - argocd
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: IPAddressPool
+# metadata:
+#   name: argo-workflows
+#   namespace: metallb-system
+# spec:
+#   addresses:
+#   - 10.0.1.31/32
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: L2Advertisement
+# metadata:
+#   name: argo-workflows
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - argo-workflows
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: IPAddressPool
+# metadata:
+#   name: argo-events
+#   namespace: metallb-system
+# spec:
+#   addresses:
+#   - 10.0.1.32/32
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: L2Advertisement
+# metadata:
+#   name: argo-events
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - argo-events
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: IPAddressPool
+# metadata:
+#   name: juice-shop-test
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - 10.0.1.40/32
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: L2Advertisement
+# metadata:
+#   name: juice-shop-test
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - juice-shop-test
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: IPAddressPool
+# metadata:
+#   name: juice-shop-prod
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - 10.0.1.41/32
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: L2Advertisement
+# metadata:
+#   name: juice-shop-prod
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - juice-shop-prod
+
+# apiVersion: metallb.io/v1beta2
+# kind: BGPPeer
+# metadata:
+#   name: default
+#   namespace: metallb-system
+# spec:
+#   myASN: 64500
+#   peerASN: 64501
+#   peerAddress: 10.0.1.10
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: BGPAdvertisement
+# metadata:
+#   name: default
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - default
