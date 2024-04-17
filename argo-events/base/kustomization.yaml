@@ -8,4 +8,5 @@ resources:
 - install-validating-webhook.yaml
 - native-eventbus.yaml
 - webhook-sensors.yaml
-- webhook-eventsource.yaml
+# - webhook-eventsource.yaml
+- github-eventsource.yaml
