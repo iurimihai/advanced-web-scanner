@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: github-eventsource-svc
+  annotations:
+    metallb.universe.tf/ip-allocated-from-pool: default
+    metallb.universe.tf/loadBalancerIPs: 10.0.1.33
+spec:
+  type: LoadBalancer
