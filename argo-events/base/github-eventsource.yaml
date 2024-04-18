@@ -7,8 +7,8 @@ spec:
   service:
     ports:
       - name: github-webhook
-        port: 61200
-        targetPort: 61200
+        port: 12000
+        targetPort: 12000
       # - name: github-webhook-without-api-credentials
       #   port: 13000
       #   targetPort: 13000
@@ -37,7 +37,7 @@ spec:
         # This url must be reachable from outside the cluster.
         # The name for the service is in `<event-source-name>-eventsource-svc` format.
         # You will need to create an Ingress or Openshift Route for the event-source service so that it can be reached from GitHub.
-        url: http://mgmt-vpc-01.go.ro
+        url: http://mgmt-vpc-01.go.ro:61200
       # type of events to listen to.
       # following listens to everything, hence *
       # You can find more info on https://developer.github.com/v3/activity/events/types/
