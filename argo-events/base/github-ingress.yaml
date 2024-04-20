@@ -10,7 +10,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /push
+      - path: /argo-events
         pathType: Prefix
         backend:
           service:
