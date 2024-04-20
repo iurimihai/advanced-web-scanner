@@ -10,3 +10,4 @@ resources:
 - webhook-sensors.yaml
 # - webhook-eventsource.yaml
 - github-eventsource.yaml
+- github-ingress.yaml

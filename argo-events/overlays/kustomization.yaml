@@ -6,5 +6,24 @@ namespace: argo-events
 resources:
   - ../base
 
-patches:
-- path: patches/github-eventsource-service.yaml
+# patches:
+# # - path: patches/github-eventsource-service.yaml
+# - patch: |-
+#     - op: add
+#       path: /metadata/annotations
+#       value: { metallb.universe.tf/ip-allocated-from-pool: default }
+#   target:
+#     group: ""
+#     version: v1
+#     kind: Service
+#     name: github-eventsource-svc
+# - patch: |-
+#     - op: add
+#       path: /metadata/annotations
+#       value: { metallb.universe.tf/loadBalancerIPs: 10.0.1.33 }
+#   target:
+#     group: ""
+#     version: v1
+#     kind: Service
+#     name: github-eventsource-svc
+  
