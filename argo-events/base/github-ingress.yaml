@@ -33,7 +33,7 @@ spec:
   - http:
       paths:
       - path: /webhook-eventsource
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
            name: webhook-eventsource-svc
