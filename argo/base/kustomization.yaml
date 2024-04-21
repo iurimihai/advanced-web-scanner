@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - workflowtemplates
   - install.yaml
+  - ingress.yaml
 
 patches:
 - patch: |-
