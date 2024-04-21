@@ -5,11 +5,11 @@ metadata:
   name: argo-server
   annotations:
     ingress.kubernetes.io/proxy-body-size: 100M
-    ingress.kubernetes.io/app-root: /argo
+    # ingress.kubernetes.io/app-root: /argo
     ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/backend-protocol: HTTPS # ingress-nginx
-    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/backend-protocol: https # ingress-nginx
+    # nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   tls:
@@ -24,6 +24,6 @@ spec:
                 name: argo-server
                 port:
                   number: 2746
-            path: /(.*)
+            path: /argo(/|$)(.*)
             pathType: Prefix
       # host: test.argo.io

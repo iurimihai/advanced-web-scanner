@@ -8,7 +8,7 @@ resources:
 - ../../security/zap
 
 patches:
-# - path: patches/argo-server-deployment.yaml
+- path: patches/argo-server-deployment.yaml
 - path: patches/argo-server-service.yaml
 # - patch: |-
 #     - op: replace
