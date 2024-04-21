@@ -10,7 +10,7 @@ spec:
       - name: argo-server
         args:
         - server
-        # - --secure=true
+        - --secure=false
         - --auth-mode=server
         # env:
         #   - name: BASE_HREF
