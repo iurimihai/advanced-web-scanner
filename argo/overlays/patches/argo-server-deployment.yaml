@@ -10,11 +10,11 @@ spec:
       - name: argo-server
         args:
         - server
-        - --secure=true
+        # - --secure=true
         - --auth-mode=server
-        env:
-          - name: BASE_HREF
-            value: /argo/
-        readinessProbe:
-          httpGet:
-            scheme: HTTPS
+        # env:
+        #   - name: BASE_HREF
+        #     value: /argo/
+        # readinessProbe:
+        #   httpGet:
+        #     scheme: HTTPS
