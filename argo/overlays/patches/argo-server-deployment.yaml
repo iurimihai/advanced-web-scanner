@@ -15,3 +15,7 @@ spec:
         env:
           - name: BASE_HREF
             value: /argo/
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+
