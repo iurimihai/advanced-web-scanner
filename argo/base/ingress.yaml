@@ -24,6 +24,6 @@ spec:
                 name: argo-server
                 port:
                   number: 2746
-            path: (/|$)(.*)
+            path: /
             pathType: Prefix
       # host: test.argo.io
