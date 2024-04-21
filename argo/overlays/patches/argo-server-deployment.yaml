@@ -12,9 +12,9 @@ spec:
         - server
         - --secure=true
         - --auth-mode=server
-        # env:
-        #   - name: BASE_HREF
-        #     value: /argo/
+        env:
+          - name: BASE_HREF
+            value: /argo/
         # readinessProbe:
         #   httpGet:
         #     scheme: HTTPS
