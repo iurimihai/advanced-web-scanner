@@ -17,7 +17,7 @@ spec:
       repositories:
         - owner: iurimihai
           names:
-            - juice-shop-deployment
+            - juice-shop
       # Github application auth. Instead of using personal token `apiToken` use app PEM            
 #     githubApp:
 #       privateKey:
