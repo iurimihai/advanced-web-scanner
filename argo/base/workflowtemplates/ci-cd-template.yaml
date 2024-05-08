@@ -24,8 +24,8 @@ spec:
       image: zaproxy/zap-stable
       # command: [zap-baseline.py]
       # args: [-t, 'http://juice-shop-service.juice-shop-test.svc.cluster.local:3000', -g, 'gen.conf', -r, 'testreport.html', -I] # <CHANGE_ME>
-      command: [bash]
-      args: [-c, "/zap/zap.sh -cmd -autorun /zap/wrk/zap.yaml"]
+      command: [zap.sh]
+      args: [-cmd, -autorun, /zap/wrk/zap.yaml]
       volumeMounts:
       - name: zap-reports
         mountPath: /zap/wrk/
