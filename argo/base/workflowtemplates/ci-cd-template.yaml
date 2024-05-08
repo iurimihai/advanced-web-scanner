@@ -21,11 +21,11 @@ spec:
       configMap:
         name: zap-config
     container:
-      image: softwaresecurityproject/zap-stable
+      image: zaproxy/zap-stable
       # command: [zap-baseline.py]
       # args: [-t, 'http://juice-shop-service.juice-shop-test.svc.cluster.local:3000', -g, 'gen.conf', -r, 'testreport.html', -I] # <CHANGE_ME>
-      args: [-cmd -autorun /zap/wrk/zap.yaml]
-      command: [zap.sh]
+      command: [bash]
+      args: [-c, zap.sh, -cmd, -autorun, /zap/wrk/zap.yaml]
       volumeMounts:
       - name: zap-reports
         mountPath: /zap/wrk/
