@@ -34,7 +34,7 @@ spec:
   - name: build
     dag:
       tasks:
-      - name: zap-baseline-scan
+      - name: build
         template: zap-scan
       # - name: build
       #   # dependencies: [sast, lint, deprecations]
