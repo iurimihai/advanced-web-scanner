@@ -21,6 +21,8 @@ spec:
       configMap:
         name: zap-config
     container:
+      securityContext:
+        runAsUser: zap
       image: zaproxy/zap-stable
       # command: [zap-baseline.py]
       # args: [-t, 'http://juice-shop-service.juice-shop-test.svc.cluster.local:3000', -g, 'gen.conf', -r, 'testreport.html', -I] # <CHANGE_ME>
