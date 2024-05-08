@@ -34,43 +34,45 @@ spec:
   - name: build
     dag:
       tasks:
-      - name: build
-        # dependencies: [sast, lint, deprecations]
-        templateRef:
-          name: build-and-push
-          template: build
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: repo_url
-            value: git://github.com/iurimihai/juice-shop.git
-          - name: repo_ref
-            value: refs/heads/main
-          - name: repo_commit_id
-            value: HEAD
-          - name: container_image
-            value: iurimihai/juice-shop-test
-          - name: container_tag
-            value: 1.1.2
-      - name: deploy-staging
-        dependencies: [build]
-        template: sleep
       - name: zap-baseline-scan
-        dependencies: [deploy-staging]
         template: zap-scan
-      - name: deploy-prod
-        dependencies: [zap-baseline-scan]
-        templateRef:
-          name: promote
-          template: promote
-          clusterScope: true
-        arguments:
-          parameters:
-          - name: test_container_image
-            value: iurimihai/juice-shop-test
-          - name: test_container_tag
-            value: 1.1.2
-          - name: prod_container_image
-            value: iurimihai/juice-shop-prod
-          - name: prod_container_tag
-            value: 1.1.1
+      # - name: build
+      #   # dependencies: [sast, lint, deprecations]
+      #   templateRef:
+      #     name: build-and-push
+      #     template: build
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: repo_url
+      #       value: git://github.com/iurimihai/juice-shop.git
+      #     - name: repo_ref
+      #       value: refs/heads/main
+      #     - name: repo_commit_id
+      #       value: HEAD
+      #     - name: container_image
+      #       value: iurimihai/juice-shop-test
+      #     - name: container_tag
+      #       value: 1.1.2
+      # - name: deploy-staging
+      #   dependencies: [build]
+      #   template: sleep
+      # - name: zap-baseline-scan
+      #   dependencies: [deploy-staging]
+      #   template: zap-scan
+      # - name: deploy-prod
+      #   dependencies: [zap-baseline-scan]
+      #   templateRef:
+      #     name: promote
+      #     template: promote
+      #     clusterScope: true
+      #   arguments:
+      #     parameters:
+      #     - name: test_container_image
+      #       value: iurimihai/juice-shop-test
+      #     - name: test_container_tag
+      #       value: 1.1.2
+      #     - name: prod_container_image
+      #       value: iurimihai/juice-shop-prod
+      #     - name: prod_container_tag
+      #       value: 1.1.1
