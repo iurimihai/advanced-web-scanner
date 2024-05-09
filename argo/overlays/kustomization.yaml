@@ -9,7 +9,7 @@ resources:
 
 patches:
 - path: patches/argo-server-deployment.yaml
-- path: patches/argo-server-service.yaml
+# - path: patches/argo-server-service.yaml
 # - patch: |-
 #     - op: replace
 #       path: /spec/type
