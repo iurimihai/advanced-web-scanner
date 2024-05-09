@@ -25,7 +25,7 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
       image: zaproxy/zap-stable
-      command: ["ls"]
+      command: ["pwd"]
       # args: [-t, 'http://juice-shop-service.juice-shop-test.svc.cluster.local:3000', -g, 'gen.conf', -r, 'testreport.html', -I] # <CHANGE_ME>
       # command: [zap.sh]
       # args: [-cmd, -autorun, /zap/wrk/zap.yaml]
