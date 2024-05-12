@@ -41,7 +41,7 @@ kind: Ingress
 metadata:
   name: webhook
   annotations:
-    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/rewrite-target: /$2
     ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
@@ -49,10 +49,11 @@ spec:
   rules:
   - http:
       paths:
-      - path: /webhook-eventsource
-        pathType: Prefix
+      - path: /
+        pathType: ImplementationSpecific
         backend:
           service:
            name: webhook-eventsource-svc
            port:
              number: 12001
+    host: gh-event.iurimihai.dev

@@ -3,17 +3,20 @@ kind: Ingress
 metadata:
   name: github
   annotations:
-    # ingress.kubernetes.io/ssl-redirect: "false"
-    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/backend-protocol: http
+    ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
   - http:
       paths:
-      - path: /argo-events
+      - path: /
         pathType: Prefix
         backend:
           service:
            name: github-eventsource-svc
            port:
              number: 12000
+    host: gh-event.iurimihai.dev
+

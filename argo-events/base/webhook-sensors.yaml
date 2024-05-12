@@ -52,9 +52,12 @@ spec:
   template:
     serviceAccountName: argo-events-sa
   dependencies:
-    - name: test-dep
-      eventSourceName: webhook
-      eventName: build
+    # - name: test-dep
+    #   eventSourceName: webhook
+    #   eventName: build
+    - name: test-gh-dep
+      eventSourceName: github
+      eventName: github-event
   triggers:
     - template:
         name: ci-cd-workflow-trigger
