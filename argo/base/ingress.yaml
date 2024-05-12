@@ -5,7 +5,7 @@ metadata:
   name: argo-server
   annotations:
     ingress.kubernetes.io/proxy-body-size: 100M
-    nginx.ingress.kubernetes.io/backend-protocol: http # ingress-nginx
+    nginx.ingress.kubernetes.io/backend-protocol: https # ingress-nginx
     nginx.ingress.kubernetes.io/ssl-passthrough: "false"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 spec:
