@@ -10,10 +10,10 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - mgmt-vpc-01.go.ro
-    secretName: ingress-tls
+  # tls:
+  # - hosts:
+  #   - mgmt-vpc-01.go.ro
+    # secretName: ingress-tls
   rules:
     - http:
         paths:
