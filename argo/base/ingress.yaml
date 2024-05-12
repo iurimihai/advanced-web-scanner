@@ -24,4 +24,4 @@ spec:
                   number: 2746
             path: /
             pathType: Prefix
-      host: argo.iurimihai.dev
+      host: argo.iurimihai.io
