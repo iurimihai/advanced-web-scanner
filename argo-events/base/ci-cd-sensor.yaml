@@ -59,7 +59,7 @@ spec:
           - src:
               dependencyName: github-event
               dataKey: body.before
-            dest: spec.arguments.parameters.3.value
+            dest: spec.arguments.parameters.4.value
           - src:
               dependencyName: github-event
               dataKey: body.after
