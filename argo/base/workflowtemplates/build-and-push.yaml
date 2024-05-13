@@ -13,6 +13,12 @@ spec:
       - name: repo_commit_id
       - name: container_image
       - name: container_tag
+    # outputs:
+    #   parameters:
+    #   - name: container_image
+    #     value: "{{inputs.parameters.container_image}}"
+    #   - name: container_tag
+    #     value: "{{inputs.parameters.container_tag}}"
     container:
       image: gcr.io/kaniko-project/executor:debug
       args:

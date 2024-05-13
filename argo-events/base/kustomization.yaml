@@ -7,7 +7,7 @@ resources:
 - install.yaml
 - install-validating-webhook.yaml
 - native-eventbus.yaml
-- webhook-sensors.yaml
+- ci-cd-sensor.yaml
 # - webhook-eventsource.yaml
 - github-eventsource.yaml
 - github-ingress.yaml

@@ -4,6 +4,22 @@ metadata:
   name: ci-cd-template
 spec:
   entrypoint: build
+  arguments:
+    parameters:
+    - name: repo_url
+      value: git://github.com/iurimihai/juice-shop.git
+    - name: repo_ref
+      value: master
+    - name: repo_commit_id
+      value: HEAD
+    - name: test_container_image
+      value: iurimihai/juice-shop-test
+    - name: test_container_tag
+      value: test
+    - name: prod_container_image
+      value: iurimihai/juice-shop-prod
+    - name: prod_container_tag
+      value: latest
   templates:
   - name: sleep
     script:
@@ -38,45 +54,45 @@ spec:
   - name: build
     dag:
       tasks:
-      - name: build
-        template: zap-scan
       # - name: build
-      #   # dependencies: [sast, lint, deprecations]
-      #   templateRef:
-      #     name: build-and-push
-      #     template: build
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: repo_url
-      #       value: git://github.com/iurimihai/juice-shop.git
-      #     - name: repo_ref
-      #       value: refs/heads/main
-      #     - name: repo_commit_id
-      #       value: HEAD
-      #     - name: container_image
-      #       value: iurimihai/juice-shop-test
-      #     - name: container_tag
-      #       value: 1.1.2
-      # - name: deploy-staging
-      #   dependencies: [build]
-      #   template: sleep
-      # - name: zap-baseline-scan
-      #   dependencies: [deploy-staging]
       #   template: zap-scan
-      # - name: deploy-prod
-      #   dependencies: [zap-baseline-scan]
-      #   templateRef:
-      #     name: promote
-      #     template: promote
-      #     clusterScope: true
-      #   arguments:
-      #     parameters:
-      #     - name: test_container_image
-      #       value: iurimihai/juice-shop-test
-      #     - name: test_container_tag
-      #       value: 1.1.2
-      #     - name: prod_container_image
-      #       value: iurimihai/juice-shop-prod
-      #     - name: prod_container_tag
-      #       value: 1.1.1
+      - name: build
+        # dependencies: [sast, lint, deprecations]
+        templateRef:
+          name: build-and-push
+          template: build
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: repo_url
+            value: "{{workflow.parameters.repo_url}}"
+          - name: repo_ref
+            value: "{{workflow.parameters.repo_ref}}"
+          - name: repo_commit_id
+            value: "{{workflow.parameters.repo_commit_id}}"
+          - name: container_image
+            value: "{{workflow.parameters.test_container_image}}"
+          - name: container_tag
+            value: "{{workflow.parameters.test_container_tag}}"
+      - name: deploy-staging
+        dependencies: [build]
+        template: sleep
+      - name: zap-baseline-scan
+        dependencies: [deploy-staging]
+        template: zap-scan
+      - name: deploy-prod
+        dependencies: [zap-baseline-scan]
+        templateRef:
+          name: promote
+          template: promote
+          clusterScope: true
+        arguments:
+          parameters:
+          - name: test_container_image
+            value: "{{workflow.parameters.test_container_image}}"
+          - name: test_container_tag
+            value: "{{workflow.parameters.test_container_tag}}"
+          - name: prod_container_image
+            value: "{{workflow.parameters.prod_container_image}}"
+          - name: prod_container_tag
+            value: "{{workflow.parameters.prod_container_tag}}"
