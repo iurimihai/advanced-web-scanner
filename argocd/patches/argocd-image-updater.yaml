@@ -7,4 +7,4 @@ spec:
     spec:
       containers:
         - name: argocd-image-updater
-          args: ['--interval', '10s']
+          args: ['--loglevel', 'debug', '--interval', '10s']
