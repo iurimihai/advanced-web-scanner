@@ -90,5 +90,5 @@ spec:
             value: "{{workflow.parameters.container_image}}"
           - name: test_container_tag
             value: "{{workflow.parameters.test_container_tag}}"
-          - name: prod_container_image
+          - name: prod_container_tag
             value: "{{workflow.parameters.prod_container_tag}}"
