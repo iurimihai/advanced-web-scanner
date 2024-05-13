@@ -106,11 +106,11 @@ spec:
           - src:
               dependencyName: github-event
               dataKey: body.before
-            dest: spec.arguments.parameters.4.value
+            dest: spec.arguments.parameters.3.value
           - src:
               dependencyName: github-event
               dataKey: body.after
-            dest: spec.arguments.parameters.6.value
+            dest: spec.arguments.parameters.5.value
                 # templates:
                 # - name: build
                 #   dag:
