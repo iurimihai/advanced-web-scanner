@@ -41,12 +41,10 @@ spec:
                     value: master
                   - name: repo_commit_id
                     value: HEAD
-                  - name: test_container_image
-                    value: iurimihai/juice-shop-test
+                  - name: container_image
+                    value: iurimihai/juice-shop
                   - name: test_container_tag
                     value: test
-                  - name: prod_container_image
-                    value: iurimihai/juice-shop-prod
                   - name: prod_container_tag
                     value: latest
           parameters:

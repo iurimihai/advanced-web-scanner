@@ -12,12 +12,10 @@ spec:
       value: master
     - name: repo_commit_id
       value: HEAD
-    - name: test_container_image
+    - name: container_image
       value: iurimihai/juice-shop-test
     - name: test_container_tag
       value: test
-    - name: prod_container_image
-      value: iurimihai/juice-shop-prod
     - name: prod_container_tag
       value: latest
   templates:
@@ -71,7 +69,7 @@ spec:
           - name: repo_commit_id
             value: "{{workflow.parameters.repo_commit_id}}"
           - name: container_image
-            value: "{{workflow.parameters.test_container_image}}"
+            value: "{{workflow.parameters.container_image}}"
           - name: container_tag
             value: "{{workflow.parameters.test_container_tag}}"
       - name: deploy-staging
@@ -88,11 +86,9 @@ spec:
           clusterScope: true
         arguments:
           parameters:
-          - name: test_container_image
-            value: "{{workflow.parameters.test_container_image}}"
+          - name: container_image
+            value: "{{workflow.parameters.container_image}}"
           - name: test_container_tag
             value: "{{workflow.parameters.test_container_tag}}"
           - name: prod_container_image
-            value: "{{workflow.parameters.prod_container_image}}"
-          - name: prod_container_tag
             value: "{{workflow.parameters.prod_container_tag}}"
