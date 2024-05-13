@@ -15,7 +15,7 @@ metadata:
     argocd-image-updater.argoproj.io/write-back-target: kustomization
     argocd-image-updater.argoproj.io/image-list: juice-shop=iurimihai/juice-shop
     argocd-image-updater.argoproj.io/juice-shop.allow-tags: regexp:test-[0-9a-zA-Z]+$
-    argocd-image-updater.argoproj.io/yourtool.update-strategy: latest
+    argocd-image-updater.argoproj.io/juice-shop.update-strategy: latest
 spec:
   # The project the application belongs to.
   project: default
