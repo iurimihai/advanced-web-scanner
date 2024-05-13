@@ -71,7 +71,7 @@ spec:
           - name: container_image
             value: "{{workflow.parameters.container_image}}"
           - name: container_tag
-            value: "{{workflow.parameters.test_container_tag}}"
+            value: "test-{{workflow.parameters.test_container_tag}}"
       - name: deploy-staging
         dependencies: [build]
         template: sleep
@@ -89,6 +89,6 @@ spec:
           - name: container_image
             value: "{{workflow.parameters.container_image}}"
           - name: test_container_tag
-            value: "{{workflow.parameters.test_container_tag}}"
+            value: "test-{{workflow.parameters.test_container_tag}}"
           - name: prod_container_tag
-            value: "{{workflow.parameters.prod_container_tag}}"
+            value: "prod-{{workflow.parameters.prod_container_tag}}"
