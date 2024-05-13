@@ -13,8 +13,8 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
     argocd-image-updater.argoproj.io/write-back-target: kustomization
-    argocd-image-updater.argoproj.io/image-list: iurimihai/juice-shop-prod
-    argocd-image-updater.argoproj.io/iurimihai/juice-shop-prod.allow-tags: regexp:*
+    argocd-image-updater.argoproj.io/image-list: juice-shop-prod=iurimihai/juice-shop-prod
+    argocd-image-updater.argoproj.io/juice-shop-prod.allow-tags: regexp:*
 spec:
   # The project the application belongs to.
   project: default
