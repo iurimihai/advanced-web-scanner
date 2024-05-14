@@ -8,6 +8,7 @@ resources:
 - argocd-install.yaml
 - image-updater-install.yaml
 - ingress.yaml
+- resolv-cm.yaml
 # - https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.1/manifests/install.yaml
 # - https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/v0.12.2/manifests/install.yaml
 

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: resolv-conf
+  namespace: argocd
+data:
+  resolv.conf: |
+    search argocd.svc.cluster.local svc.cluster.local cluster.local
+    nameserver 10.43.0.10
+    options ndots:5
