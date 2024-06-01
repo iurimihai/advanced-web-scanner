@@ -5,7 +5,7 @@ resources:
   - workflowtemplates
   - install.yaml
   - ingress.yaml
-  - regcred.yaml
+  - regcred-sealed.yaml
 
 # patches:
 # - patch: |-
