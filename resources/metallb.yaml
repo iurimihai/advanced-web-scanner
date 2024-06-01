@@ -29,7 +29,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: metallb
+    namespace: metallb-system
 
     # # kustomize specific config
     # kustomize:
