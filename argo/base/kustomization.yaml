@@ -5,6 +5,7 @@ resources:
   - workflowtemplates
   - install.yaml
   - ingress.yaml
+  - regcred.yaml
 
 # patches:
 # - patch: |-

@@ -1,0 +1,17 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: github-access
+  namespace: argocd
+spec:
+  encryptedData:
+    password: AgA72ga8Mu1FzB9Ji90b+deQfqGupeDIfhVssCoYULhhMtoj9K768hCCPaXnj0IB1YdZXS+PadMibX1oZCWpal3f+dEcUTwkedwn4IE3daVbsYP9RDAx8/aacx5dOEoaPkS/zKiDmEXdH2Y6n72zjclLAbS/BIi+Pe/zVK7nh1BmLuw2lWOm0e9mzfnln6oiaavxW/ceZhn/E2bLrNwa/hBqm8lzeNLuJPmMukB/AwOxxuR6t7q4cNfmyxZp91N+BSRyoauPLGzv3n9bvO1LupE7e9GDro28wwAvw2q+WZttmG5aeuFFVxHEvPuVGuvQjEJHergSEQmmkN9JpvZtfPQT6/RA3HX3/TS8WgNdmMYCZkpyOvxrGNA6TTvK7HA8p2vOy+ipW7KF/Q2PNltU9sjYVTMirQE5vCCUQWjKp2UDk+PhCmMmFeGwwuOGDTr/sPemWIa0TJ+7nxMGGGAg33VB03Ys+Cy4fHXNbTL6mDHbCh5lMUT2HuE0sMOuMoVnk8JCMPNkvgoNExwIfLKkiGF+MoCOWcVtskAZh3dSAJPH/UzhWadmRiyotXD1xOBy7F+k1m3jNIv5U+FLEKfPSsNKPCJ9KBZrIxUQlu/uBgU0slZFg0dzdLUnj6FOi8wMa/iXL7X5mrNcTUC5PoO6Fk+rVfiNm3s2qJNMPBaGItybuD81awNnr6KMjHwJy5azJachhS352oau71LyHcbXoMBQlvxB4M+Xws3eEQpctRavEzSY/PsouDHv
+    username: AgAHA52Qkx9KF5Ns5EGX9AiF39w7WjitbNWQBWQHqfseqEPJZW+9L5lgw3ddNQd9rL+G/Ep7BD6CIECaCcTIG6AbRxj+3XsBcfaYq81z35yptZZqgkPYvZSWk+S/OW6lsH5Kn0wRtnSs6WuxX6ptlXzbFI7Q1SHLsfXfk7Q6aAakylHkJiplyxeyvoDTEBsn3XSiiZvYI4ZNQup1tSsvAWQajwwAesMqH2oFSS3sW65H9pqqmvl/QzogKfoGBwP4XJ0Wlfjh200JrIH8NVdOCX6E/qR4+RQ8HAd9QWxPuawDi5k0/r/331n5UP0GT4MglSOYboSF6jNxkYCvA/CvWgwaHD11MFxYXVmoDfyS6x+OQRRHzVAKw4LfViPB/3v2Y6/fR/47Ug1qA3NFg94zlzBuwk2EEl/XVZ9HJeI+5XX4uZ3JqrDMFbP1dAFpSyo9f6j1wJtxqyx5UssUR+ekwfYpGqrouVYLr8VmNU2/ZOwJSYyBBgYQ38/YY0vRSXHmy8E1p+6Oq7Xt3xQus/igsz5w7+F28rpCgFDBgwchYqFuAgZYSUje4P8ICa/WpcpNFqiQ5RBtO829JlwWU0m+wARaydW0d2CLwAPhycvkEdyu98Teux3vF90ei8c/zNkurFJWPLH007ZB+TW9ejVsuRraI23Ou/rkrHvHBFkKEiIY6bYpiufyolj+cuaCBRmR+cLdMbKDo8RWL4s=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: github-access
+      namespace: argocd
+    type: Opaque

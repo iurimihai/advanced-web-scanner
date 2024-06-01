@@ -11,7 +11,7 @@ metadata:
   labels:
     name: juice-shop-app
   annotations:
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/github-access
     argocd-image-updater.argoproj.io/write-back-target: kustomization
     argocd-image-updater.argoproj.io/image-list: juice-shop=iurimihai/juice-shop
     argocd-image-updater.argoproj.io/juice-shop.allow-tags: regexp:prod-[0-9a-zA-Z]+$

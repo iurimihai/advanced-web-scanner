@@ -11,3 +11,4 @@ resources:
 # - webhook-eventsource.yaml
 - github-eventsource.yaml
 - github-ingress.yaml
+- github-access-sealed.yaml
