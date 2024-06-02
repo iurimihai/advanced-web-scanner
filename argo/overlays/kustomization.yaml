@@ -6,3 +6,6 @@ namespace: argo
 resources:
 - ../base
 - ../../security/zap
+
+patches:
+  - path: patches/argo-server-deployment.yaml
