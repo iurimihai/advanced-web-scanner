@@ -22,7 +22,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: cert-manager-system
+    namespace: cert-manager
 
   syncPolicy:
     automated:
