@@ -7,13 +7,13 @@ metadata:
     ingress.kubernetes.io/proxy-body-size: 100M
     nginx.ingress.kubernetes.io/backend-protocol: https # ingress-nginx
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    cert-manager.io/cluster-issuer: iurimihai-dev
+    cert-manager.io/issuer: argo
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
     - argo.iurimihai.dev
-    secretName: iurimihai-dev-tls
+    secretName: argo-tls
   rules:
     - http:
         paths:
@@ -25,3 +25,26 @@ spec:
             path: /
             pathType: Prefix
       host: argo.iurimihai.dev
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: argo
+  namespace: argo
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: iurimihai.meresan@gmail.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: argo-tls
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - dns01:
+        cloudflare:
+          email: iurimihai.meresan@gmail.com
+          apiTokenSecretRef:
+            name: cloudflare-access
+            key: api-key
