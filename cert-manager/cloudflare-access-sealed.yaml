@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: cloudflare-access
+  namespace: default
+spec:
+  encryptedData:
+    api-key: AgC+t/bahdSogJ5ZB1lQttGA/nG0oqd17dMJDWb5Eey2aJ0je32vrMJouIioYQIB1Y5RzI8+2EvCxDV5nkeNXCTAOUaEg/FNUjU+txulYXPbmRLYz6HVO/nrcnNIZuNxZsnLGqrjNFKnjuSaN/gLX4u0upZ0jyMhEADt2C1Hak71e1d6xOyVcm4veBQH8odNHIVMnYHCqtpVSuCf6v4hh0ZKCuCTl2/dx8Dqcu2OK2l0QFl3xSbXtW75OmC3bSNOfjN3Ieoxh1FQFIaAvaqNw/ZHG/pR53w7XusdcmPaSCY4WtWM5owNdGlC0dwFJb335Ey6TMe575Pphb3Aylbr2W+rP+oc5eLxkHfeopE1BGC46Jawtgc7dNNTu39T1jnP9+erkubUs70wNOC8Ww5uumEQpAd3Di8Reb2zO2AjvWc0pu3mjN4LQkD81b2tSgIPFCMRLUbxXEsaT8Ml8jcODM068CwpExQjth6uaLzr4sGbvG0xXSNGU+IHcn1Y7n4mPBRjWnFqr8gxI6MxLJLs79C5PI9karkmHM3iT+HCtvCkYuJ8Yhi36fOPcz5Idn/8GovGO/ukLD6JFSNydRrBRDre0qnZt3SW/A/AISmYp/lXr6MZKKBIwHY38Fni0PMK0aGD9S01H9z19uLDn/UnW000VTlcIf/OJs7vyZQUecgBWtyuob1a9/bdQnUyeM6lek9lJOwZ14vBuhrtC+zjEBMN6I6XuXQGXzLGt4ZaxiJf7v27jJBbMAX+
+  template:
+    metadata:
+      name: cloudflare-access
+      namespace: default
