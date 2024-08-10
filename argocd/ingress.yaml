@@ -5,14 +5,15 @@ metadata:
   name: argocd-server
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: https # ingress-nginx
-    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    cert-manager.io/cluster-issuer: iurimihai-dev
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 spec:
   ingressClassName: nginx
-  # tls:
-  # - hosts:
-  #   - mgmt-vpc-01.go.ro
-    # secretName: ingress-tls
+  tls:
+  - hosts:
+    - argocd.iurimihai.dev
+    secretName: iurimihai-dev-tls
   rules:
     - http:
         paths:
@@ -20,7 +21,7 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  number: 80
+                  number: 443
             path: /
             pathType: Prefix
       host: argocd.iurimihai.dev
