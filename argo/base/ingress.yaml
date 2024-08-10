@@ -13,7 +13,7 @@ spec:
   tls:
   - hosts:
     - argo.iurimihai.dev
-    secretName: argo-tls
+    secretName: iurimihai-dev-tls
   rules:
     - http:
         paths:
