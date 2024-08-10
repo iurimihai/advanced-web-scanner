@@ -6,14 +6,14 @@ metadata:
   annotations:
     ingress.kubernetes.io/proxy-body-size: 100M
     nginx.ingress.kubernetes.io/backend-protocol: https # ingress-nginx
-    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    cert-manager.io/cluster-issuer: iurimihai-dev
 spec:
   ingressClassName: nginx
-  # tls:
-  # - hosts:
-  #   - mgmt-vpc-01.go.ro
-    # secretName: ingress-tls
+  tls:
+  - hosts:
+    - argo.iurimihai.dev
+    secretName: iurimihai-dev-tls
   rules:
     - http:
         paths:
