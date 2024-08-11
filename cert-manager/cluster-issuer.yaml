@@ -19,3 +19,6 @@ spec:
           apiTokenSecretRef:
             name: cloudflare-access
             key: api-key
+      selector:
+        dnsNames:
+          - '*.iurimihai.dev'
