@@ -7,13 +7,13 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS # ingress-nginx
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    # cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - argocd.iurimihai.dev
-    secretName: argocd-tls
+  # tls:
+  # - hosts:
+  #   - argocd.iurimihai.dev
+  #   secretName: argocd-tls
   rules:
     - http:
         paths:

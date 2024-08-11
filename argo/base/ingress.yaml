@@ -5,16 +5,16 @@ metadata:
   name: argo-server
   annotations:
     ingress.kubernetes.io/proxy-body-size: 100M
-    nginx.ingress.kubernetes.io/backend-protocol: https # ingress-nginx
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    # nginx.ingress.kubernetes.io/backend-protocol: https # ingress-nginx
+    # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    # cert-manager.io/cluster-issuer: letsencrypt-staging
     # cert-manager.io/cluster-issuer: iurimihai-dev
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - argo.iurimihai.dev
-    secretName: argo-tls
+  # tls:
+  # - hosts:
+  #   - argo.iurimihai.dev
+  #   secretName: argo-tls
   rules:
     - http:
         paths:
