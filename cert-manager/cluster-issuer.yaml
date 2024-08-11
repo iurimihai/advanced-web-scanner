@@ -21,4 +21,5 @@ spec:
             key: api-key
       selector:
         dnsNames:
-          - '*.iurimihai.dev'
+          - argo.iurimihai.dev
+          - argocd.iurimihai.dev
