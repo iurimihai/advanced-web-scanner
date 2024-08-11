@@ -23,3 +23,7 @@ spec:
         dnsNames:
           - argo.iurimihai.dev
           - argocd.iurimihai.dev
+          - test.iurimihai.dev
+          - jsh-prod.iurimihai.dev
+          - jsh-test.iurimihai.dev
+          - gh-event.iurimihai.dev
