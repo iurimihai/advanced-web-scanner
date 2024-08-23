@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: juice-shop-staging
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/iurimihai/juice-shop.git
+        revision: HEAD
+        directories:
+          - path: /
+        filters:
+          - branchMatch:
+              regex: '^feature/.*$'  # Match branches that start with "feature/"
+  template:
+    metadata:
+      name: 'juice-shop-{{ .branch }}'
+    spec:
+      project: staging
+      source:
+        repoURL: https://github.com/iurimihai/juice-shop-deployment.git
+        targetRevision: '{{ .branch }}'
+        path: staging
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'juice-shop-{{ .branch }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
