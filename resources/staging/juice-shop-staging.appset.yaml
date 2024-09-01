@@ -34,6 +34,8 @@ metadata:
   name: juice-shop-staging
   namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
   - pullRequest:
       github:
@@ -45,7 +47,7 @@ spec:
       requeueAfterSeconds: 1800
   template:
     metadata:
-      name: 'juice-shop-{{ .branch }}'
+      name: 'juice-shop-{{ branch }}'
     spec:
       project: staging
       source:
@@ -55,7 +57,7 @@ spec:
         path: staging
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'juice-shop-{{ .branch }}'
+        namespace: 'juice-shop-{{ branch }}'
       syncPolicy:
         automated:
           prune: true
