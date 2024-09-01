@@ -7,12 +7,9 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/iurimihai/juice-shop.git
-        revision: HEAD
+        revision: 'feature-*'
         directories:
           - path: /
-        filters:
-          - branchMatch:
-              regex: '^feature/.*$'  # Match branches that start with "feature/"
   template:
     metadata:
       name: 'juice-shop-{{ .branch }}'
@@ -20,7 +17,8 @@ spec:
       project: staging
       source:
         repoURL: https://github.com/iurimihai/juice-shop-deployment.git
-        targetRevision: '{{ .branch }}'
+        # targetRevision: '{{ .branch }}'
+        targetRevision: HEAD
         path: staging
       destination:
         server: 'https://kubernetes.default.svc'
@@ -29,3 +27,38 @@ spec:
         automated:
           prune: true
           selfHeal: true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: juice-shop-staging-scm-provider
+#   namespace: argocd
+# spec:
+#   generators:
+#     - scmProvider:
+#         filters:
+#           - repositoryMatch: juice-shop
+#             branchMatch: '^feature-.*$'
+#         github:
+#           api: https://api.github.com
+#           tokenRef:
+#             secretName: github-access
+#             key: password
+#           organization: iurimihai
+#   template:
+#     metadata:
+#       name: 'juice-shop-{{ .branch }}'
+#     spec:
+#       project: staging
+#       source:
+#         repoURL: https://github.com/iurimihai/juice-shop-deployment.git
+#         # targetRevision: '{{ .branch }}'
+#         targetRevision: HEAD
+#         path: staging
+#       destination:
+#         server: 'https://kubernetes.default.svc'
+#         namespace: 'juice-shop-{{ .branch }}'
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
