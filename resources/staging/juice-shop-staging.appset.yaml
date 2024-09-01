@@ -1,3 +1,33 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: juice-shop-staging
+#   namespace: argocd
+# spec:
+#   generators:
+#     - git:
+#         repoURL: https://github.com/iurimihai/juice-shop.git
+#         revision: 'feature-*'
+#         directories:
+#           - path: /
+#   template:
+#     metadata:
+#       name: 'juice-shop-{{ .branch }}'
+#     spec:
+#       project: staging
+#       source:
+#         repoURL: https://github.com/iurimihai/juice-shop-deployment.git
+#         # targetRevision: '{{ .branch }}'
+#         targetRevision: HEAD
+#         path: staging
+#       destination:
+#         server: 'https://kubernetes.default.svc'
+#         namespace: 'juice-shop-{{ .branch }}'
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -5,11 +35,14 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - git:
-        repoURL: https://github.com/iurimihai/juice-shop.git
-        revision: 'feature-*'
-        directories:
-          - path: /
+  - pullRequest:
+      github:
+        owner: iurimihai
+        repo: juice-shop
+        tokenRef:
+          secretName: github-access
+          key: password
+      requeueAfterSeconds: 1800
   template:
     metadata:
       name: 'juice-shop-{{ .branch }}'
