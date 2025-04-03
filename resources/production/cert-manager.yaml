@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  # You'll usually want to add your resources to the argocd namespace.
+  namespace: argocd
+  # Add this finalizer ONLY if you want these to cascade delete.
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  # Add labels to your application object.
+  labels:
+    name: cert-manager-app
+spec:
+  # The project the application belongs to.
+  project: production
+
+  # Source of the application manifests
+  sources:
+  - repoURL: https://github.com/iurimihai/advanced-web-scanner.git  # Can point to either a Helm chart repo or a git repo.
+    targetRevision: feature/cluster-networking  # For Helm, this refers to the chart version.
+    path: cert-manager  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      # - ServerSideApply=true
+      - CreateNamespace=true
+      # - RespectIgnoreDifferences=true
+
+    # The retry feature is available since v1.7
+    retry:
+      limit: 5 # number of failed sync attempt retries; unlimited number of attempts if less than 0
+      backoff:
+        duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+        factor: 2 # a factor to multiply the base duration after each failed retry
+        maxDuration: 3m # the maximum amount of time allowed for the backoff strategy

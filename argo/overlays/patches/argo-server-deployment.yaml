@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo-server
+  namespace: argo
+spec:
+  template:
+    spec:
+      containers:
+      - name: argo-server
+        args:
+        - server
+        - --secure=true
+        - --auth-mode=server
+        # env:
+        #   - name: BASE_HREF
+        #     value: /argo/
+        # readinessProbe:
+        #   httpGet:
+        #     scheme: HTTPS

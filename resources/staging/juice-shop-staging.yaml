@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: juice-shop-prod
+  name: juice-shop-staging
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
   # Add this finalizer ONLY if you want these to cascade delete.
@@ -11,22 +11,24 @@ metadata:
   labels:
     name: juice-shop-app
   annotations:
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/github-access
     argocd-image-updater.argoproj.io/write-back-target: kustomization
-    argocd-image-updater.argoproj.io/image-list: iurimihai/juice-shop-prod
+    argocd-image-updater.argoproj.io/image-list: juice-shop=iurimihai/juice-shop
+    argocd-image-updater.argoproj.io/juice-shop.allow-tags: regexp:test-[0-9a-zA-Z]+$
+    argocd-image-updater.argoproj.io/juice-shop.update-strategy: latest
 spec:
   # The project the application belongs to.
-  project: default
+  project: staging
 
   # Source of the application manifests
   source:
     repoURL: https://github.com/iurimihai/juice-shop-deployment.git  # Can point to either a Helm chart repo or a git repo.
     targetRevision: main  # For Helm, this refers to the chart version.
-    path: prod
+    path: staging
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: juice-shop-prod
+    namespace: juice-shop-test
 
     # # kustomize specific config
     # kustomize:

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: argo-server
+  namespace: argo
+  annotations:
+    metallb.universe.tf/ip-allocated-from-pool: default
+    metallb.universe.tf/loadBalancerIPs: 10.0.1.31
+spec:
+  type: LoadBalancer

@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: argocd
+  name: argocd-server
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - argocd.iurimihai.dev
+    secretName: argocd-server-tls
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
+            path: /
+            pathType: Prefix
+      host: argocd.iurimihai.dev

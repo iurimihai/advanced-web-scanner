@@ -1,0 +1,29 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: iurimihai.meresan@gmail.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-staging-tls
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - dns01:
+        cloudflare:
+          email: iurimihai.meresan@gmail.com
+          apiTokenSecretRef:
+            name: cloudflare-access
+            key: api-key
+      selector:
+        dnsNames:
+          - argo.iurimihai.dev
+          - argocd.iurimihai.dev
+          - test.iurimihai.dev
+          - jsh-prod.iurimihai.dev
+          - jsh-test.iurimihai.dev
+          - gh-event.iurimihai.dev

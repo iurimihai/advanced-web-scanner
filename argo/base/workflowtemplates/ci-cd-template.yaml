@@ -4,6 +4,20 @@ metadata:
   name: ci-cd-template
 spec:
   entrypoint: build
+  arguments:
+    parameters:
+    - name: repo_url
+      value: git://github.com/iurimihai/juice-shop.git
+    - name: repo_ref
+      value: master
+    - name: repo_commit_id
+      value: HEAD
+    - name: container_image
+      value: iurimihai/juice-shop
+    - name: test_container_tag
+      value: test
+    - name: prod_container_tag
+      value: prod
   templates:
   - name: sleep
     script:
@@ -21,19 +35,25 @@ spec:
       configMap:
         name: zap-config
     container:
-      image: softwaresecurityproject/zap-stable
-      # command: [zap-baseline.py]
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+      image: zaproxy/zap-stable
+      # command: ["ls"]
+      # args: ["-l", "/wrk/", "/zap-config/", '/zap/']
       # args: [-t, 'http://juice-shop-service.juice-shop-test.svc.cluster.local:3000', -g, 'gen.conf', -r, 'testreport.html', -I] # <CHANGE_ME>
-      args: [-cmd -autorun /zap/wrk/zap.yaml]
       command: [zap.sh]
+      args: [-cmd, -autorun, /zap-config/zap.yaml]
       volumeMounts:
       - name: zap-reports
-        mountPath: /zap/wrk/
+        mountPath: /wrk/
       - name: zap-config
-        mountPath: /zap
+        mountPath: /zap-config/
   - name: build
     dag:
       tasks:
+      # - name: build
+      #   template: zap-scan
       - name: build
         # dependencies: [sast, lint, deprecations]
         templateRef:
@@ -43,34 +63,33 @@ spec:
         arguments:
           parameters:
           - name: repo_url
-            value: git://github.com/iurimihai/juice-shop.git
+            value: "{{workflow.parameters.repo_url}}"
           - name: repo_ref
-            value: refs/heads/main
+            value: "{{workflow.parameters.repo_ref}}"
           - name: repo_commit_id
-            value: HEAD
+            value: "{{workflow.parameters.repo_commit_id}}"
           - name: container_image
-            value: iurimihai/juice-shop-test
+            value: "{{workflow.parameters.container_image}}"
           - name: container_tag
-            value: 1.1.2
+            value: "test-{{workflow.parameters.test_container_tag}}"
       - name: deploy-staging
         dependencies: [build]
         template: sleep
-      - name: zap-baseline-scan
-        dependencies: [deploy-staging]
-        template: zap-scan
+      # - name: zap-baseline-scan
+      #   dependencies: [deploy-staging]
+      #   template: zap-scan
       - name: deploy-prod
-        dependencies: [zap-baseline-scan]
+        # dependencies: [zap-baseline-scan]
+        dependencies: [deploy-staging]
         templateRef:
           name: promote
           template: promote
           clusterScope: true
         arguments:
           parameters:
-          - name: test_container_image
-            value: iurimihai/juice-shop-test
+          - name: container_image
+            value: "{{workflow.parameters.container_image}}"
           - name: test_container_tag
-            value: 1.1.2
-          - name: prod_container_image
-            value: iurimihai/juice-shop-prod
+            value: "test-{{workflow.parameters.test_container_tag}}"
           - name: prod_container_tag
-            value: 1.1.1
+            value: "prod-{{workflow.parameters.prod_container_tag}}"
