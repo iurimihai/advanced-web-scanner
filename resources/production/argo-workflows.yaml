@@ -12,7 +12,7 @@ metadata:
     name: argo-workflows
 spec:
   # The project the application belongs to.
-  project: default
+  project: production
 
   # Source of the application manifests
   sources:

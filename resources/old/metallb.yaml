@@ -12,7 +12,7 @@ metadata:
     name: metallb-app
 spec:
   # The project the application belongs to.
-  project: production
+  project: default
 
   # Source of the application manifests
   sources:

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: juice-shop-staging
+  name: argo-events
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
   # Add this finalizer ONLY if you want these to cascade delete.
@@ -9,26 +9,27 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   # Add labels to your application object.
   labels:
-    name: juice-shop-app
-  annotations:
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/github-access
-    argocd-image-updater.argoproj.io/write-back-target: kustomization
-    argocd-image-updater.argoproj.io/image-list: juice-shop=iurimihai/juice-shop
-    argocd-image-updater.argoproj.io/juice-shop.allow-tags: regexp:test-[0-9a-zA-Z]+$
-    argocd-image-updater.argoproj.io/juice-shop.update-strategy: latest
+    name: argo-events-app
 spec:
   # The project the application belongs to.
-  project: staging
+  project: default
 
   # Source of the application manifests
-  source:
-    repoURL: https://github.com/iurimihai/juice-shop-deployment.git  # Can point to either a Helm chart repo or a git repo.
-    targetRevision: main  # For Helm, this refers to the chart version.
-    path: staging
+  sources:
+  - repoURL: https://github.com/iurimihai/advanced-web-scanner.git  # Can point to either a Helm chart repo or a git repo.
+    targetRevision: feature/cluster-networking  # For Helm, this refers to the chart version.
+    path: argo-events/overlays  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+  # - repoURL: https://argoproj.github.io/argo-helm
+  #   targetRevision: 2.3.3
+  #   chart: argo-events
+  #   helm:
+  #     releaseName: argo-events
+  #     valueFiles:
+  #     - events-values.yaml
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: juice-shop-test
+    namespace: argo-events
 
     # # kustomize specific config
     # kustomize:
